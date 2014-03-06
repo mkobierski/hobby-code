@@ -1,0 +1,42 @@
+In England the currency is made up of pound, £, and pence, p, and there are eight coins in general circulation:
+
+    1p, 2p, 5p, 10p, 20p, 50p, £1 (100p) and £2 (200p).
+
+It is possible to make £2 in the following way:
+
+    1×£1 + 1×50p + 2×20p + 1×5p + 1×2p + 3×1p
+
+How many different ways can £2 be made using any number of coins?
+
+try with just 1p 2p 5p, writing 30p
+
+1p is smallest
+2p can be factored into 1p, 1p
+5p can be factored into 2p, 2p, 1p
+10p factored into 5p, 5p
+
+Some examples
+
+10
+5 5
+5 2 2 1
+5 2 1 1 1
+5 1 1 1 1 1
+2 2 1 1 1 1 1 1 
+2 2 2 1 1 1 1
+2 2 2 2 1 1
+2 2 2 2 2
+
+13              first number
+5 5 2 1         factor largest possible into first number
+5 5 1 1 1       from right, find first largest which isn't 1
+5 2 2 1 1 1 1   factor largest again, which aren't 1
+5 2 2 2 2       group smaller factors into next largest eg. largest 5, group into 2s
+5 2 2 2 1 1
+5 2 2 1 1 1 1
+5 2 1 1 1 1 1 1
+5 1 1 1 1 1 1 1 1 
+2 2 1 1 1 1 1 1 1 1 1
+2 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1
+
