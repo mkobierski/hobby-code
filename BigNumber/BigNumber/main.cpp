@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <iostream>
 
-#include "bignumber.h"
+#include "BigNumber.h"
 
 using namespace std;
 
@@ -10,6 +10,7 @@ using namespace std;
 int main()
 {
 	string vToCheck;
+	int aint = 1;
 	BigMath::BigNumber a;
 	bool test;
 	while (true)
@@ -17,7 +18,7 @@ int main()
 		cout << "Enter a number to check: ";
 		cin >> vToCheck;
 		a.setV(vToCheck);
-		test = a.isPrime();
+		test = a.isTruncatablePrime();
 		cout << a.print() << " is ";
 		if(!test)
 		{

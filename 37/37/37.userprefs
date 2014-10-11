@@ -1,0 +1,45 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../BigNumber/BigNumberLib/BigNumber.cpp">
+    <Files>
+      <File FileName="37/main.cpp" Line="18" Column="3" />
+      <File FileName="../../BigNumber/BigNumberLib/BigNumber.cpp" Line="1345" Column="13" />
+      <File FileName="../../BigNumber/BigNumberLib/BigNumber.h" Line="197" Column="20" />
+      <File FileName="../../../../../../usr/include/c++/4.7/bits/stl_vector.h" Line="309" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="37" expanded="True" />
+          <Node name="BigNumberLib" expanded="True">
+            <Node name="BigNumber.cpp" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State>
+          <Value>vToCheck[0]</Value>
+          <Value>vToCheckBackward[0]</Value>
+          <Value>vToCheckBackward[1]</Value>
+          <Value>vToCheckBackward[2]</Value>
+          <Value>v_size</Value>
+          <Value>out.v[2]</Value>
+          <Value>v[0]</Value>
+          <Value>v[1]</Value>
+          <Value>v[2]</Value>
+          <Value>vectorToClean[0]</Value>
+          <Value>vectorToClean[1]</Value>
+          <Value>vectorToClean[2]</Value>
+          <Value>this</Value>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

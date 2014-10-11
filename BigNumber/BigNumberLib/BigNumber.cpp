@@ -9,11 +9,11 @@
 #include <cstdio>
 #include <sstream>
 #include <cstring>
-#include <string>
+//#include <string>
 #include <iomanip>
-#include <vector>
+//#include <vector>
 
-#include "bignumber.h"
+#include "BigNumber.h"
 
 using namespace std;
 
@@ -70,6 +70,7 @@ namespace BigMath
 		v = tempV;
 		cleanV();
 		cout << "operator=(): b (v = " << print(tempV) << ")." << endl;
+		return *this;
 	}
 	
 /*	BigNumber BigNumber::operator+(vector<int> b)
@@ -262,7 +263,7 @@ namespace BigMath
 					b.push_back(0);
 				}
 			}
-			int numAdditions = 0;
+			unsigned int numAdditions = 0;
 			int carry = 0;
 			while (numAdditions < a.size())
 			{
@@ -291,7 +292,7 @@ namespace BigMath
 			cout 	 << endl;	*/
 		}
 		
-		else if(a.back() < 0 && b.back() >= 0 || b.back() < 0 && a.back() >= 0)
+		else if( ( a.back() < 0 && b.back() >= 0 ) || ( b.back() < 0 && a.back() >= 0 ) )
 		{ //one negative case
 			//make a larger of two num
 			if(a.size() == b.size())
@@ -327,7 +328,7 @@ namespace BigMath
 				b.push_back(0);
 			}
 			
-			int numSubtractions = 0;
+			unsigned int numSubtractions = 0;
 			int borrow = 0;
 			int aTemp = 0;
 			while (numSubtractions < a.size())
@@ -419,7 +420,7 @@ namespace BigMath
 	vector<int> BigNumber::multiply(vector<int> a, int b)
 	{
 		bool negative = false;
-		if(a.back() < 0 && b >= 0 || a.back() >= 0 && b < 0)
+		if( ( a.back() < 0 && b >= 0 ) || ( a.back() >= 0 && b < 0 ) )
 		{
 			if(a.back() < 0)
 			{
@@ -476,7 +477,7 @@ namespace BigMath
 		//Strip negatives to facilitate multiplication
 		bool aNeg = false;
 		bool bNeg = false;
-		if(a.back() < 0 && b.back() >= 0 || a.back() >= 0 && b.back() < 0)
+		if( ( a.back() < 0 && b.back() >= 0 ) || ( a.back() >= 0 && b.back() < 0 ) )
 		{
 			if(a.back() < 0)
 			{
@@ -496,7 +497,7 @@ namespace BigMath
 			aNeg = bNeg = true;
 		}
 		
-		for(int i = 0; i < b.size(); i++)
+		for(unsigned int i = 0; i < b.size(); ++i)
 		{
 			vector<int> temp = multiply(a, b[i]);
 			temp.insert(temp.begin(), i, 0);
@@ -504,7 +505,7 @@ namespace BigMath
 		}
 		
 		//Reattach negatives
-		if(aNeg && !bNeg || !aNeg && bNeg)
+		if( ( aNeg && !bNeg ) || ( !aNeg && bNeg ) )
 		{
 			product.back() = -product.back();
 			if(aNeg)
@@ -636,8 +637,8 @@ namespace BigMath
 
 		int i = _dividend.size() - 1;
 		int j = _divisor.size() - 1;
-		long offset = i - j;//this might create a limitation
-		for(int k = 0; k <= offset; k++) //build quotient vector, all entries 0
+		unsigned long offset = i - j;//this might create a limitation
+		for(unsigned int k = 0; k <= offset; k++) //build quotient vector, all entries 0
 		{
 			quotient.push_back(0);
 		}
@@ -675,7 +676,7 @@ namespace BigMath
 			dividend_part = multiply(remainder, base);
 			dividend_part[0] = _dividend[offset];
 		}
-		if(dividendNeg && !divisorNeg || !dividendNeg && divisorNeg)
+		if( ( dividendNeg && !divisorNeg ) || ( !dividendNeg && divisorNeg ) )
 		{
 			quotient.back() *= -1;
 			remainder.back() *= -1;
@@ -836,7 +837,7 @@ namespace BigMath
 			}
 			else if(a.back() < 0 && b.back() < 0)
 			{
-				int i = a.size() - 1;
+				unsigned int i = a.size() - 1;
 				while(a[i] == b[i] && i > 0)
 				{
 					i--;
@@ -1104,7 +1105,11 @@ namespace BigMath
 		{
 			vToCheck.back() *= -1;
 		}
-		if(equalTo(vToCheck, 1) || equalTo(vToCheck, 2))
+		if( equalTo( vToCheck , 1 ) )
+		{
+			return false;
+		}
+		if( equalTo( vToCheck , 2 ) )
 		{
 			return true;
 		}
@@ -1212,7 +1217,7 @@ namespace BigMath
 		string sv = print(vToCheck);
 		setBase(10, 1);
 		vector<int> v_size_checker = buildVector(sv);
-		int v_size = v_size_checker.size();
+		unsigned int v_size = v_size_checker.size();
 		
 		int prev_base = base;
 		int prev_lbase = lbase;
@@ -1226,7 +1231,7 @@ namespace BigMath
 		// Single digit numbers don't follow this check...
 		// 2 is considered circular prime
 		{
-			for(int i = 0; i < v_size; i++)
+			for(unsigned int i = 0; i < v_size; i++)
 			{
 				// If any digit of the number is even or 5, it
 				// cannot be a circular prime.
@@ -1242,7 +1247,7 @@ namespace BigMath
 				}
 			}
 		}
-		for(int i = 0; i < v_size; i++)
+		for(unsigned int i = 0; i < v_size; i++)
 		{
 			if(!isPrime(vToCheck))
 			{
@@ -1269,6 +1274,120 @@ namespace BigMath
 				cout << "Error - size has changed!" << endl;
 				exit(1);
 			}
+		}
+		return true;
+	}
+	
+	bool BigNumber::isTruncatablePrime()
+	{
+		cleanV();
+		return isTruncatablePrime( v );
+	}
+	bool BigNumber::isTruncatablePrime( int n )
+	{
+		setBase( 10 , 1 );
+		vector< int > vn = buildVector( n );
+		return isTruncatablePrime( vn );
+	}
+	bool BigNumber::isTruncatablePrime(std::string s)
+	{
+		vector< int > vs = buildVector( s );
+		return isTruncatablePrime( vs );
+	}
+	bool BigNumber::isTruncatablePrime(vector<int> vToCheck)
+	{
+		// A truncatable prime number is a number which remains prime when
+		// its leading or trailing digits are stripped until only one digit
+		// remains.
+		// Ex. 3797, 797, 97, and 7 are prime
+		// 	   3797, 379, 37, and 3 are prime
+		//
+		// Use base of 10 so only 1 digit is stored per vector element
+		cleanV(vToCheck);
+		string sv = print(vToCheck);
+		setBase(10, 1);
+		vector<int> v_size_checker = buildVector(sv);
+		unsigned int v_size = v_size_checker.size();
+		
+		// int prev_base = base;
+		// int prev_lbase = lbase;
+		int comp_base = 10;
+		int comp_lbase = 1;
+		
+		sv = print(vToCheck);
+		setBase(comp_base, comp_lbase);
+		vToCheck=buildVector(sv);
+		if( v_size <= 0 )
+		{
+			return false;
+		}
+		if( v_size == 1 )
+		{
+			switch( vToCheck[0] )
+			{
+				case 0:
+				case 1:
+				case 2:
+				case 3:
+				case 5:
+				case 7:
+					return false; 
+			}
+		}
+		else
+		{
+			// A number with 5 or a multiple of 2 in it (with exception
+			// of the most significant digit) cannot be a truncatable prime
+			for( unsigned int i = 0 ; i < vToCheck.size() - 1 ; ++i )
+			{
+				switch( vToCheck[i] )
+				{
+					case 0:
+					case 2:
+					case 4:
+					case 5:
+					case 6:
+					case 8:
+						return false;
+				}
+			}
+		}
+		
+		vector< int > vToCheckOrig = vToCheck;
+		BigNumber out;
+		for( unsigned int i = 0 ; i < v_size ; ++i )
+		{
+			out.setV( vToCheck );
+			// cout << out.print() << " : Checking...\n" ;
+			if( !isPrime( vToCheck ) )
+			{
+				return false;
+			}
+			// cout << "    " << out.print() << endl;
+			
+			// Truncate last digit
+			vToCheck.pop_back();
+		}
+		
+		
+		// cout << "Passed first iteration\n";
+		vToCheck = vToCheckOrig;
+		
+		for( unsigned int i = 0 ; i < v_size - 1; ++i )
+		{
+			// Shift digits forward by 1
+			for( unsigned int j = 0 ; j < vToCheck.size() - 1 ; ++j )
+			{
+				vToCheck[ j ] = vToCheck[ j + 1 ];
+			}
+			vToCheck.pop_back();
+			
+			out.setV( vToCheck );
+			if( !isPrime( vToCheck ) )
+			{
+				return false;
+			}
+			// cout << "    " << out.print() << endl;
 		}
 		return true;
 	}
@@ -1367,9 +1486,10 @@ namespace BigMath
 	}
 	void BigNumber::cleanV(vector<int>& vectorToClean)
 	{
-		if(vectorToClean.size())
+		size_t size = vectorToClean.size();
+		if( size )
 		{
-			for(int i = 0; i < vectorToClean.size() && vectorToClean.back() == 0; i++)
+			for(unsigned int i = 0; i < vectorToClean.size() && vectorToClean.back() == 0; i++)
 			{
 				vectorToClean.pop_back();
 			}

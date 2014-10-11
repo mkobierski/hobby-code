@@ -1,0 +1,11 @@
+*.o
+*.so
+*.a
+
+*.out
+# *.sln
+# *.userprefs
+# *.cproj
+*.d
+
+*/bin/*

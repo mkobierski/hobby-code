@@ -1,0 +1,5 @@
+Name: BigNumberLib
+Description: 
+Version: 0.1
+Libs: -L"/home/black/Documents/ProjectEuler/BigNumber/BigNumberLib/bin/Debug" -lBigNumberLib
+Cflags: -I"/home/black/Documents/ProjectEuler/BigNumber/BigNumberLib"

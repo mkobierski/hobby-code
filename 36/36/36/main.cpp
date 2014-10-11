@@ -69,6 +69,13 @@ bool isDoublePalindrome(int n)
 
 int main (int argc, char *argv[])
 {
+	for(int i = 0; i < 20; i++)
+	{
+		char *szBinary = new char [20];
+		intToBinary(szBinary, i);
+		cout << i << " (" << szBinary << ")" << endl;
+	}
+	/*
 	char *szNBinary = new char[7*8];
 	long sum = 0;
 	for(int i = 0; i < RANGE_TO_TEST; i++)
@@ -82,6 +89,7 @@ int main (int argc, char *argv[])
 		 << " palindromic in" << endl
 		 << "base 10 and base 2:" << endl
 		 << sum;
+	*/
 	return 0;
 }
 

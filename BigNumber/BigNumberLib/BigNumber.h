@@ -1,5 +1,5 @@
-#ifndef _bigmath_
-#define _bigmath_
+#ifndef _BIGMATH_INCLUDED
+#define _BIGMATH_INCLUDED
 
 #include <string>
 #include <vector>
@@ -160,6 +160,11 @@ namespace BigMath
 			static bool isCircularPrime(std::string s); //done
 			static bool isCircularPrime(vector<int> vToCheck); //done
 			
+			bool isTruncatablePrime(); 
+			static bool isTruncatablePrime(int n); 
+			static bool isTruncatablePrime(std::string s); 
+			static bool isTruncatablePrime(vector<int> vToCheck); 
+			
 			vector<int> factorial(); //done
 			static vector<int> factorial(int n); //done
 			static vector<int> factorial(std::string s); //done
@@ -198,4 +203,4 @@ namespace BigMath
 	};
 }
 
-#endif
+#endif // _BIGMATH_INCLUDED
