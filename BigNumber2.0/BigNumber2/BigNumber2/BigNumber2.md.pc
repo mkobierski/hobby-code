@@ -1,5 +1,0 @@
-Name: BigNumber2
-Description: 
-Version: 0.1
-Libs: -L"/home/black/Documents/ProjectEuler/BigNumber2.0/BigNumber2/BigNumber2/bin/Debug" -lBigNumber2
-Cflags: -I"/home/black/Documents/ProjectEuler/BigNumber2.0/BigNumber2/BigNumber2"
