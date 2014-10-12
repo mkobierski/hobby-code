@@ -1,71 +1,30 @@
-#ifndef BIGNUMBER2__INCLUDED
-#define BIGNUMBER2__INCLUDED
 
-#include "Types.hpp"
-
-namespace Memory
-{
-	void * allocate( Natural bytes );
-	void * zeroRange( void * handle , Natural bytes );
-	void freeRange( void * handle );
-}
 
 namespace BigMath
 {
 	class BigNumber;
-	
+	class BigNumberImpl;
+
 	std::string const getAsString( BigNumber const & );
 
-    class BigNumber
-    {
-    	enum{ BLOCK_SIZE = 1024 };
-    public:
-    	struct Mask
-    	{
-	    	enum 
-	    	{
-	    		NEGATIVE = 1 << 7 ,
-	    		DECIMAL = 1 << 6
-	    	};
-    	};
-    
-        BigNumber();
-        ~BigNumber();
-        
-        BigNumber & operator=( long long );
-        BigNumber & operator=( std::string );
-        BigNumber & operator=( char * );
-      	
-      	std::string const getAsString() const;
-        
-        Byte * getBegin();
-        Byte const * getBegin() const; 
-        Byte * getEnd();
-        Byte const * getEnd() const;
-        Byte const * getEndLimit() const;
+	class BigNumber
+	{
+	public:
+		BigNumber();
+		~BigNumber();
+		BigNumber( BigNumber const & );
+		BigNumber & operator=( BigNumber const & );
 
-        Natural const getCount() const;
+		std::string const getAsString();
 
-		bool isNegative() const;
-		bool isEmpty() const;
-		bool isValid();
+		void swap( BigNumber const & );
 
-        void clear();
+	private:
+		void init( BigNumber const & );
+		
 
-    private:
-        BigNumber( BigNumber & );
-        BigNumber & operator=( BigNumber & );
-        
-        void setNegative();
-		void unsetNegative();
-		void reverseNegative();
-        
-        Byte * handle;
-        Natural count;
-        bool negative;
-        
-        Natural numBlocks;
-    };
+		BigNumberImpl * impl;
+	};
+
+
 }
-
-#endif // BIGNUMBER2__INCLUDED

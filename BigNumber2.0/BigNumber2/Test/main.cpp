@@ -8,15 +8,12 @@ using namespace std;
 int main (int argc, char *argv[])
 {
 	BigMath::BigNumber nb;
-	nb = "-1289736412098734506918234650192834512347942318";
-	if( !nb.isEmpty() )
-	{
-		cout << nb.getAsString() << " is my string" << endl;
-	}
-	else
-	{
-		cout << "awwwwww" << endl;
-	}
+	BigMath::BigNumber nbCopy;
+	nb = "-11";
+	nbCopy = nb;
+	cout << nb.getAsString().data() << " is my string" << endl;
+	cout << nbCopy.getAsString().data() << " is my string" << endl;
+
 	getchar();
 			
 	return 0;
