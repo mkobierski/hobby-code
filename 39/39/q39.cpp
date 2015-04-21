@@ -57,7 +57,7 @@ int main()
 			{
 				break;
 			}
-			if( t.isValid() )
+			if( t.isValid() && t.perim() == 840 )
 			{
 				++trianglesPerPerim[ t.perim() ];
 				t.print();

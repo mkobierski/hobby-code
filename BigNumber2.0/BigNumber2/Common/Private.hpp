@@ -1,11 +1,10 @@
 #ifndef PRIVATE__INCLUDED
 #define PRIVATE__INCLUDED
 
-// Dependencies
-// #include <cstdlib>
-// #include <cstdio>
-// #include <cstring>
+#include <cstdio>
 #include <iostream>
+#include <sstream>
+#include <iomanip>
 
 #include "Public.hpp"
 

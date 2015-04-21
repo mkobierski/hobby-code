@@ -1,5 +1,7 @@
+// -- COMPILE ME FOR LIB --
+
 #include "Private.hpp"
 
-#include "Memory.cpp"
+#include "BigNumericalData.cpp"
 #include "BigNumber2.cpp"
-#include "BigNumber2Impl.cpp"
+

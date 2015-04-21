@@ -1,0 +1,29 @@
+#ifndef PRIMESEIVEIMPL__INCLUDED
+#define PRIMESEIVEIMPL__INCLUDED
+
+template<size_t sz>
+class PrimeSeiveImpl {
+	typedef std::bitset<sz> SeiveType;
+	
+public:
+	typedef size_t SizeT;
+
+	PrimeSeiveImpl();
+private:
+	PrimeSeiveImpl(PrimeSeiveImpl const &);	// not defined
+	PrimeSeiveImpl & operator=(PrimeSeiveImpl const &); // not defined
+
+	bool initSeive(SizeT);
+	void compute(SizeT);
+	void verifySeive(SizeT);
+
+	SeiveType seive;
+	bool seiveReady;
+
+public:
+	bool check(SizeT val);
+};
+
+#include "PrimeSeiveImpl.hxx"
+
+#endif // PRIMESEIVEIMPL__INCLUDED

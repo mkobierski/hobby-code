@@ -1,0 +1,68 @@
+#include <iostream>
+#include <limits>
+#include <bitset>
+
+PrimeSeiveImpl::PrimeSeiveImpl()
+: seiveReady(false)
+{}
+
+bool PrimeSeiveImpl::initSeive(SizeT num) {
+	// SeiveType implementation internally uses DiffT for 
+	// computing offsets, making it the numerical limit.
+	SizeT maxLimit = std::numeric_limits<DiffT>::max() - 33;
+	if (num >= maxLimit)
+	{
+		std::cout << "Cannot check prime numbers above " 
+				  << maxLimit - 1 << std::endl;
+		return false;
+	}
+	if (num < 2) {
+		num = 2;
+	}
+	try {
+		seive.assign(num + 1, true);
+	}
+	catch (std::exception& e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+	seive[0] = false;
+	seive[1] = false;
+	return true;
+}
+
+void PrimeSeiveImpl::compute(SizeT maxLimit) {
+	seiveReady = false;
+
+	if(!initSeive(maxLimit))
+	{
+		return;
+	}
+	SeiveIter beginning = seive.begin();
+	SeiveIter half = seive.end() - (seive.size() / 2);
+	for(SeiveIter it = beginning + 2; it < half; ++it) {
+		if(*it == true) {
+			// Number at index is prime
+			unsigned index = it - beginning;
+			for(SeiveIter innerIt = it + index; innerIt < seive.end(); innerIt += index) {
+				*innerIt = false;
+			}
+		}
+	}
+	seiveReady = true;
+}
+
+void PrimeSeiveImpl::verifySeive(SizeT val) {
+	if (!seiveReady || val >= seive.size()) {
+		compute(val);
+	}
+}
+
+bool PrimeSeiveImpl::check(SizeT val) {
+	verifySeive(val);
+	if(seiveReady)
+	{
+		return seive[val];
+	}
+	return false;
+}
