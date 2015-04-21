@@ -15,7 +15,6 @@ set(INSTALL_HDR ${INSTALL_ROOT}/include)
 set(INSTALL_BIN ${INSTALL_ROOT}/bin)
 set(INSTALL_EXTRA_FILES files)
 
-
 set(COMMON_DIR Common)
 include_directories(${COMMON_DIR})
 
