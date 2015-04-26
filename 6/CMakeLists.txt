@@ -5,7 +5,6 @@ set(SRC_MAIN main.cpp)
 set(SRC_TEST Q6-test.cpp)
 
 add_executable(${PROJECT_NAME} ${SRC_MAIN} ${SRC_COMMON})
-
 add_executable(${PROJECT_NAME}-test ${SRC_TEST} ${SRC_COMMON})
 
 install(TARGETS ${PROJECT_NAME} ${PROJECT_NAME}-test
