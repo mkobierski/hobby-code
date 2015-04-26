@@ -66,7 +66,9 @@ class CSource(ContentObj):
     CPP_FNAME = "{}.cpp"
     HPP_FNAME = "{}.hpp"
     CPP_TEST_FNAME = "{}-test.cpp"
-    CPP = """namespace {proj_name} {{
+    CPP = """#include <cstdio>
+
+namespace {proj_name} {{
 
 int solve(int input) {{
     /*
@@ -89,7 +91,7 @@ int solveAndPrint() {{
 #define PROJECTEULER_{proj_name}_H_
 
 namespace {proj_name} {{
-    int solve();
+    int solve(int);
     int solveAndPrint();
 }}
 

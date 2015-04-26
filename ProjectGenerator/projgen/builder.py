@@ -65,6 +65,11 @@ class ProjectBuilder(object):
             with open(fname, "w") as f:
                 f.writelines(content)
 
+    @property
+    def name(self):
+        return self._info.name
+
     def _create_proj_dir(self):
         if not os.path.isdir(self._info.dir):
             os.makedirs(self._info.dir)
+

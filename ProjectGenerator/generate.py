@@ -41,18 +41,38 @@ class DependentProjects(Projects):
         super(DependentProjects, self).__init__()
         self.needs_common = True
 
+class AllProjects(object):
+    def __init__(self):
+        self.groups = [
+            StandaloneProjects(),
+            DependentProjects()
+        ]
+
+def create_files(proj_builder):
+    proj_builder.create_cmakelists()
+    proj_builder.create_csource()
+
 def build_project(proj_builder):
+    print "{}...".format(proj_builder.name),
     if proj_builder.dir_is_clean():
-        proj_builder.create_cmakelists()
-        proj_builder.create_csource()
+        try:
+            create_files(proj_builder)
+        except Exception as e:
+            print "FAIL"
+        else:
+            print "OK"
+    else:
+        print "Dirty"
 
 def build_projects(projects):
     print "Building projects..."
-    for project in projects.ITEMS:
-        name = utils.namify(project)
-        build_project(
-            ProjectBuilder(name, proj_dir=project, 
-                needs_common=projects.needs_common))
+    for group in projects.groups:
+        for project in group.ITEMS:
+            name = utils.namify(project)
+            build_project(
+                ProjectBuilder(name, proj_dir=project, 
+                    needs_common=group.needs_common))
+    print "Done"
 
 def main():
     if len(sys.argv) > 2:
@@ -62,8 +82,7 @@ def main():
     old_cwd = os.getcwd()
     try:
         os.chdir(src_root)
-        build_projects(StandaloneProjects())
-        build_projects(DependentProjects())
+        build_projects(AllProjects())
     finally:
         os.chdir(old_cwd)
     return 0
