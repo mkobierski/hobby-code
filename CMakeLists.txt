@@ -28,3 +28,5 @@ add_subdirectory(7)
 add_subdirectory(8)
 add_subdirectory(9)
 add_subdirectory(${COMMON_DIR})
+
+add_subdirectory(MetaSandbox)
