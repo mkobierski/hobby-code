@@ -4,10 +4,22 @@ project(ProjectEuler)
 enable_testing()
 
 if(MSVC)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /Od /ZI /EHsc")
+    set(CMAKE_CXX_FLAGS
+        "${CMAKE_CXX_FLAGS} /W4 /Od /ZI /EHsc "
+        # The source code uses LL_FMT_STR wherever printf is passed a
+        # long long value.  Unfortunately, microsoft requires the
+        # format string to be %I64d instead of %lld.  Make it happen.
+        "/DLL_FMT_STR=\\\"I64\\\"")
 elseif(CMAKE_COMPILER_IS_GNUCXX)
-    set(CMAKE_CXX_FLAGS "-Wall -O0 -g")
+    set(CMAKE_CXX_FLAGS "-Wall -O0 -g -std=c++11")
 endif()
+
+if(MINGW)
+    # MinGW uses microsoft's back end, so the same reasoning applies.
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DLL_FMT_STR=\\\"I64\\\"")
+endif()
+
+message(${CMAKE_CXX_FLAGS})
 
 set(INSTALL_ROOT ${CMAKE_SOURCE_DIR}/local)
 set(INSTALL_LIB ${INSTALL_ROOT}/lib)

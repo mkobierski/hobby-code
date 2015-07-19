@@ -8,6 +8,7 @@ endif()
 
 set(HDR_COMMON
                # BigNumber.hpp
+               GlobalDefines.hpp
                CircularBuffer.hpp
                Common.hpp
                File.hpp

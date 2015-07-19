@@ -4,7 +4,7 @@
 
 #include <stdio.h>
 
-long main () {
+int main () {
     Q7::solveAndPrint();
     getchar();
     return 0;

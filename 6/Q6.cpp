@@ -1,6 +1,8 @@
-#include "Q6Private.hpp"
-
 #include <stdio.h>
+
+#include "GlobalDefines.hpp"
+
+#include "Q6Private.hpp"
 
 namespace Q6 {
 
@@ -14,7 +16,7 @@ long long solveAndPrint() {
 	const int upperLimit = 100;
 	long long diff = solve(lowerLimit, upperLimit);
 	printf("Q6: The difference of sum of squares and square of sums\n"
-		   "    for the numbers between %d and %d is %d",
+		   "    for the numbers between %d and %d is %" LL_FMT_STR "d",
 		   lowerLimit, upperLimit, diff);
 	return diff;
 }

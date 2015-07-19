@@ -1,8 +1,9 @@
-#include "LowestCommonMultiple.hpp"
-
 #include <cstdio>
 #include <climits>
 #include <vector>
+
+#include "GlobalDefines.hpp"
+#include "LowestCommonMultiple.hpp"
 
 namespace Q5 {
 /*
@@ -20,7 +21,8 @@ long long solve(int factor) {
 long long solveAndPrint() {
 	const int factor = 20;
 	long long num = solve(factor);
-	printf("Q5: The smallest number evenly divisible by 1 through %d is %d",
+	printf("Q5: The smallest number evenly divisible by 1 through %d is "
+        "%" LL_FMT_STR "d",
 		   factor, num);
 	return num;
 }

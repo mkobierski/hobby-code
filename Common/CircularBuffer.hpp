@@ -53,8 +53,8 @@ private:
 template<typename T>
 long long multiplyElementsOf(T const & buffer) {
     long long product = 1;
-    for(T::CIter it = buffer.first(); it != buffer.end(); ++it) {
-        assert(product 
+    for(typename T::CIter it = buffer.first(); it != buffer.end(); ++it) {
+        assert(product
                  ? *it < (std::numeric_limits<long long>::max() / product)
                  : true);
         product *= *it;

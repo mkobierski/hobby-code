@@ -56,4 +56,4 @@ namespace Math
     };
 }
 
-#endif // _BIGMATH_INCLUDED
+#endif // UPINT_INCLUDED
